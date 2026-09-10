@@ -1,0 +1,73 @@
+1] Find all employees with name having L at 3rd position and E at second last position.
+
+==> select * from emp where name regexp'^..L.*E.$';
+
+2] Find all employees with name not starting with A or M
+==> select * from emp where regexp_like (ename , '^[^AM]');
+
+3] Display all employees with sal >1000 and sal<3000 and job has A at starting position and ends with T.
+==> select * from emp where sal>1000 and sal<=3000 and regexp_like (job,'^A .* T$');
+
+4] Write a query  to display empno, ename, sal, commission, increased sal by 10% and for all employees  whose  name starts with A,M or S.
+
+==> select empno , ename , sal, comm,sal*1.10 from emp where regexp_like(ename,'^[AMS]');
+
+5] Display all employees whose name starts with A and ends with either N or S, or works in dept 10. 
+==> select * from emp where ename regexp '^A.*(N$|S$)';
+==> select * from emp where ename regexp'^A.*[^N,S]$';
+
+6] List all departments whose name has at least 8 characters.
+==> select * from emp where length(ename) >= 8;
+
+7] List all departments whose name has at least 8 characters.
+==>  select * from emp where ename regexp'{8,}';
+
+8] List the details of the employee , whose names start with ‘A’ and end with ‘S’ or whose names contains N as the second or third character, and end with either ‘N’ or ‘S’.
+
+==>.    select * from emp where ename like 'A%S' or ename like '_N%' or ename like '__N%' and (ename like '%N' or ename like '%S');
+
+==> select * from regexp_like(ename,'^A.*S$')
+           or ragex_like(ename , '^.[N] .* [NS]$')
+           or ragex_like(ename ,'^..[N].* [NS]$');
+
+9] List employees whose name starts with either 'A' or 'S' in dept 20.
+
+==>  select * from emp where (regexp_like(ename , '^A')
+  or regexp_like(ename , '^S')) and deptno = 20;
+
+10] List all employees with job starting with C , E at 3rd position and  ending with K.
+ ==>  select * from emp where job  regexp '^C.E.*K$';
+
+11] To list all employees with job containing L at third position and M at third last position.
+
+==>       select * from emp where job regex '^..L.*M..$';
+
+12] To list all employees with comm is null and name starts with ‘S’
+ ==> select * from emp where comm is null and regexp (ename ,'^S');
+
+13] List employees in all dept whose salary not in the range of 2000 to 3000 with the job which is having a  string   called 'MAN' at the end. 
+
+==>  select * from emp where sal not between 2000 and 3000 and regexp_like(job , 'MAN$'); 
+  
+14] List all the employee whose name does not end with 'S' in dept 20 and 30?
+
+==> select * from emp where regexp_like(ename , '[^S]$') And deptno in(20,30);
+
+15] Display list of all employees whose name ends with ER.
+==> select * from emp where regexp_like(ename ,'ER$');
+
+16] To find all employees with name starting with either M or A and last character as either R or E..
+  
+ ==> select * from emp where regexp_like(ename , '^[MA].*[RE]$'); 
+   
+17] Find names having exactly five letters
+== >  SELECT *
+            FROM emp 
+            WHERE name REGEXP '^[A-Za-z]{5}$';
+ 18] To find all employee with name starting with A or M and ending with E.
+
+ ==>  select * from emp where regexp_like(ename, '^[AM].* E$');
+
+ 19] Find all employees with name starting with M, having  L at 3rd position and ends with R.
+
+==> select * from emp where regexp_like(ename , '^M.L.*R$');
